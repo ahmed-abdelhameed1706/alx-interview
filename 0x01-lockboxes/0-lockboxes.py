@@ -4,24 +4,13 @@
 
 def canUnlockAll(boxes):
     """function to solve the lockboxes problem"""
-    boxes_visited = set()
-
-    def visit_boxes_recursion(box_index):
-        if box_index in boxes_visited:
+    for key in range(1, len(boxes)):
+        flag = False
+        for box in range(len(boxes)):
+            if key in boxes[box] and box != key:
+                flag = True
+                break
+        if not flag:
             return False
 
-        boxes_visited.add(box_index)
-
-        keys = boxes[box_index]
-
-        flag = False
-
-        for key in keys:
-            if visit_boxes_recursion(key):
-                flag = True
-
-        return flag
-
-    visit_boxes_recursion(0)
-
-    return len(boxes_visited) == len(boxes)
+    return True
