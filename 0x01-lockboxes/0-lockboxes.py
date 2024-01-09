@@ -8,13 +8,19 @@ def canUnlockAll(boxes):
 
     def visit_boxes_recursion(box_index):
         if box_index in boxes_visited:
-            return
+            return False
+
         boxes_visited.add(box_index)
 
         keys = boxes[box_index]
 
+        flag = False
+
         for key in keys:
-            visit_boxes_recursion(key)
+            if visit_boxes_recursion(key):
+                flag = True
+
+        return flag
 
     visit_boxes_recursion(0)
 
