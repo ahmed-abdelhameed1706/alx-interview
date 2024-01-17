@@ -36,6 +36,6 @@ def minOperations(n: int) -> int:
 
         if is_prime(gcd_n) or gcd_n == 1:
             return gcd_n + div_factor
-        return minOperations(gcd_n) + div_factor
+        return rec_min(gcd_n) + div_factor
 
     return rec_min(n)
