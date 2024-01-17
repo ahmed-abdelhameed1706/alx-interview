@@ -8,7 +8,7 @@ def minOperations(n: int) -> int:
 
     def gcd(n: int) -> int:
         """function to find the greatest number to divide n by"""
-        result: int = 1
+        result = 1
         for i in range(2, int(n**0.5) + 1):
             if n % i == 0:
                 result = max(result, i, n // i)
@@ -32,7 +32,7 @@ def minOperations(n: int) -> int:
             return x
 
         gcd_n = gcd(x)
-        div_factor: int = x // gcd_n
+        div_factor = x // gcd_n
 
         if is_prime(gcd_n) or gcd_n == 1:
             return gcd_n + div_factor
