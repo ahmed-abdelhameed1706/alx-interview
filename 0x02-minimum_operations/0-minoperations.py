@@ -28,7 +28,7 @@ def minOperations(n: int) -> int:
         if x <= 0:
             return 0
 
-        if is_prime(x) or n == 1:
+        if is_prime(x) or x == 1:
             return x
 
         gcd_n = gcd(x)
