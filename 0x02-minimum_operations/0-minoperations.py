@@ -4,7 +4,7 @@ import math
 
 
 def minOperations(n: int) -> int:
-    def gcd(n):
+    def gcd(n) -> int:
         """function to find the greatest number to divide n by"""
         result = 1
         for i in range(2, int(n**0.5) + 1):
@@ -12,7 +12,7 @@ def minOperations(n: int) -> int:
                 result = max(result, i, n // i)
         return result
 
-    def is_prime(number):
+    def is_prime(number) -> bool:
         """function to find if number is prime"""
         if number < 2:
             return False
@@ -22,7 +22,7 @@ def minOperations(n: int) -> int:
         return True
         """function to find minimum operations"""
 
-    def rec_min(x):
+    def rec_min(x) -> int:
         if x <= 0:
             return 0
 
