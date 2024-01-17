@@ -25,10 +25,10 @@ def minOperations(n: int) -> int:
 
     def rec_min(x: int) -> int:
         """function to recursivly find the operations"""
-        if x <= 0 or (not isinstance(x, int)):
+        if x <= 0 or (not isinstance(x, int)) or x == 1:
             return 0
 
-        if is_prime(x) or x == 1:
+        if is_prime(x):
             return x
 
         gcd_n = gcd(x)
