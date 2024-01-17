@@ -4,6 +4,7 @@ import math
 
 
 def gcd(n):
+    """function to find the greatest number to divide n by"""
     result = 1
     for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
