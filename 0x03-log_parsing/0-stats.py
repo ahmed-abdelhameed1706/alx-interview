@@ -27,6 +27,7 @@ if __name__ == "__main__":
         500: 0,
     }  # no
     total_size = 0
+    line_count = 0
 
     def print_data():
         print(f"File size: {total_size}")
@@ -35,14 +36,15 @@ if __name__ == "__main__":
                 print(f"{key}: {status_code_count[key]}")
 
     try:
-        for idx, line in enumerate(sys.stdin):
+        for line in sys.stdin:
             if validate_line(line):
+                line_count += 1
                 file_size = line.split()[-1]
                 status_code = int(line.split()[-2])
                 total_size += int(file_size)
                 if status_code in status_code_count.keys():
                     status_code_count[status_code] += 1
-                if (idx + 1) % 10 == 0:
+                if line_count % 10 == 0:
                     print_data()
     finally:
         print_data()
