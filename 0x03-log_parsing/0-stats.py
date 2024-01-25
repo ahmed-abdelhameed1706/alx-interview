@@ -38,15 +38,14 @@ if __name__ == "__main__":
     try:
         for line in sys.stdin:
             line_count += 1
-            if not validate_line(line):
-                continue
-            file_size = line.split()[-1]
-            status_code = int(line.split()[-2])
-            total_size += int(file_size)
-            if status_code in status_code_count:
-                status_code_count[status_code] += 1
-            if line_count % 10 == 0:
-                print_data()
+            if validate_line(line):
+                file_size = line.split()[-1]
+                status_code = int(line.split()[-2])
+                total_size += int(file_size)
+                if status_code in status_code_count:
+                    status_code_count[status_code] += 1
+                if line_count % 10 == 0:
+                    print_data()
 
     except KeyboardInterrupt:
         print_data()
