@@ -5,11 +5,7 @@ import re
 
 
 if __name__ == "__main__":
-    line_format = (
-        r"^\d+\.\d+\.\d+\.\d+ - \["
-        r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+\] "
-        r'"GET /projects/260 HTTP/1\.1" \d+ \d+$'
-    )
+    line_format = r"^\d+\.\d+\.\d+\.\d+ - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+\] \"GET /projects/260 HTTP/1\.1\" \d+ \d+$"  # nopep8
 
     def validate_line(line: str) -> bool:
         """function to return line matches format or not"""
