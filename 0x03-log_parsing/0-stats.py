@@ -33,13 +33,16 @@ if __name__ == "__main__":
 
     try:
         for idx, line in enumerate(sys.stdin):
-            if validate_line(line):
-                file_size = line.split()[-1]
-                status_code = int(line.split()[-2])
-                total_size += int(file_size)
-                if status_code in status_code_count.keys():
-                    status_code_count[status_code] += 1
-                if (idx + 1) % 10 == 0:
-                    print_data()
+            try:
+                if validate_line(line):
+                    file_size = line.split()[-1]
+                    status_code = int(line.split()[-2])
+                    total_size += int(file_size)
+                    if status_code in status_code_count.keys():
+                        status_code_count[status_code] += 1
+                    if (idx + 1) % 10 == 0:
+                        print_data()
+            except Exception as e:
+                pass
     finally:
         print_data()
