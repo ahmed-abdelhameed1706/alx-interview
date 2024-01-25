@@ -43,6 +43,7 @@ if __name__ == "__main__":
                 status_code_count[status_code] += 1
                 if (idx + 1) % 10 == 0:
                     print_data()
-
+    except KeyboardInterrupt:
+        pass
     finally:
         print_data()
