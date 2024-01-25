@@ -16,14 +16,23 @@ if __name__ == "__main__":
         patern = re.compile(line_format)
         return bool(patern.match(line))
 
-    status_code_count = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+    status_code_count = {
+        200: 0,
+        301: 0,
+        400: 0,
+        401: 0,
+        403: 0,
+        404: 0,
+        405: 0,
+        500: 0,
+    }  # no
     total_size = 0
 
     def print_data():
         print(f"File size: {total_size}")
-        for key, value in status_code_count.items():
-            if value > 0 and isinstance(value, int):
-                print(f"{key}: {value}")
+        for key in sorted(status_code_count.keys()):
+            if status_code_count[key] > 0:
+                print(f"{key}: {status_code_count[key]}")
 
     try:
         for idx, line in enumerate(sys.stdin):
