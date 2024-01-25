@@ -11,43 +11,31 @@ if __name__ == "__main__":
         r'"GET /projects/\d+ HTTP/1\.1" \d+ \d+$'
     )
 
-    def validate_line(line: str) -> bool:
+    def validate_line(line):
         """function to return line matches format or not"""
-        pattern = re.compile(line_format)
-        return bool(pattern.match(line))
+        patern = re.compile(line_format)
+        return bool(patern.match(line))
 
-    status_code_count = {
-        200: 0,
-        301: 0,
-        400: 0,
-        401: 0,
-        403: 0,
-        404: 0,
-        405: 0,
-        500: 0,
-    }  # nopep8
+    status_code_count = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
     total_size = 0
 
-    line_count = 0
-
-    def print_data() -> None:
+    def print_data():
         print(f"File size: {total_size}")
-        for key in sorted(status_code_count.keys()):
-            if status_code_count[key] > 0:
-                print(f"{key}: {status_code_count[key]}")
+        for key, value in status_code_count.items():
+            if value > 0 and isinstance(value, int):
+                print(f"{key}: {value}")
 
     try:
-        for line in sys.stdin:
-            if validate_line(line):
-                line_count += 1
+        while True:
+            for idx, line in enumerate(sys.stdin):
+                if not validate_line(line):
+                    continue
                 file_size = line.split()[-1]
                 status_code = int(line.split()[-2])
                 total_size += int(file_size)
-                if status_code in status_code_count:
-                    status_code_count[status_code] += 1
-                if line_count % 10 == 0:
+                status_code_count[status_code] += 1
+                if (idx + 1) % 10 == 0:
                     print_data()
 
     except KeyboardInterrupt:
         print_data()
-        raise
