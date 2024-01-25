@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""script to log parse"""
+"""script to parse logs"""
 import sys
 import re
 
@@ -8,7 +8,7 @@ if __name__ == "__main__":
     line_format = (
         r"^\d+\.\d+\.\d+\.\d+ - \["
         r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+\] "
-        r'"GET /projects/\d+ HTTP/1\.1" \d+ \d+$'
+        r'"GET /projects/260 HTTP/1\.1" \d+ \d+$'
     )
 
     def validate_line(line):
@@ -26,10 +26,8 @@ if __name__ == "__main__":
                 print(f"{key}: {value}")
 
     try:
-        while True:
-            for idx, line in enumerate(sys.stdin):
-                if not validate_line(line):
-                    continue
+        for idx, line in enumerate(sys.stdin):
+            if validate_line(line):
                 file_size = line.split()[-1]
                 status_code = int(line.split()[-2])
                 total_size += int(file_size)
@@ -39,3 +37,4 @@ if __name__ == "__main__":
 
     except KeyboardInterrupt:
         print_data()
+        raise
