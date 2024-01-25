@@ -12,8 +12,8 @@ if __name__ == "__main__":
 
     def validate_line(line: str) -> bool:
         """function to return line matches format or not"""
-        patern = re.compile(line_format)
-        return bool(patern.match(line))
+        pattern = re.compile(line_format)
+        return bool(pattern.match(line))
 
     status_code_count = {
         200: 0,
@@ -27,14 +27,17 @@ if __name__ == "__main__":
     }  # nopep8
     total_size = 0
 
+    line_count = 0
+
     def print_data() -> None:
         print(f"File size: {total_size}")
-        for key, value in status_code_count.items():
-            if value > 0:
-                print(f"{key}: {value}")
+        for key in sorted(status_code_count.keys()):
+            if status_code_count[key] > 0:
+                print(f"{key}: {status_code_count[key]}")
 
     try:
-        for idx, line in enumerate(sys.stdin):
+        for line in sys.stdin:
+            line_count += 1
             if not validate_line(line):
                 continue
             file_size = line.split()[-1]
@@ -42,7 +45,7 @@ if __name__ == "__main__":
             total_size += int(file_size)
             if status_code in status_code_count:
                 status_code_count[status_code] += 1
-            if (idx + 1) % 10 == 0:
+            if line_count % 10 == 0:
                 print_data()
 
     except KeyboardInterrupt:
