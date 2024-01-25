@@ -34,17 +34,15 @@ if __name__ == "__main__":
 
     try:
         for line in sys.stdin:
-            try:
-                if validate_line(line):
-                    line_count += 1
-                    file_size = line.split()[-1]
-                    status_code = int(line.split()[-2])
-                    total_size += int(file_size)
-                    if status_code in status_code_count.keys():
-                        status_code_count[status_code] += 1
-                    if line_count % 10 == 0:
-                        print_data()
-            except Exception as e:
-                continue
+            if validate_line(line):
+                line_count += 1
+                file_size = line.split()[-1]
+                status_code = int(line.split()[-2])
+                total_size += int(file_size)
+                if status_code in status_code_count.keys():
+                    status_code_count[status_code] += 1
+                if line_count % 10 == 0:
+                    print_data()
+
     finally:
         print_data()
