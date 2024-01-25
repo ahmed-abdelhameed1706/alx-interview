@@ -43,6 +43,6 @@ if __name__ == "__main__":
                     if (idx + 1) % 10 == 0:
                         print_data()
             except Exception as e:
-                pass
+                continue
     finally:
         print_data()
