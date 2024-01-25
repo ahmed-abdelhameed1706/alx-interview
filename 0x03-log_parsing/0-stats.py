@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""script to log parse"""
 import sys
 import re
 
@@ -37,8 +38,8 @@ if __name__ == "__main__":
 
     try:
         for line in sys.stdin:
-            line_count += 1
             if validate_line(line):
+                line_count += 1
                 file_size = line.split()[-1]
                 status_code = int(line.split()[-2])
                 total_size += int(file_size)
