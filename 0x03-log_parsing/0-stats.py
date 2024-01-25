@@ -40,9 +40,11 @@ if __name__ == "__main__":
             file_size = line.split()[-1]
             status_code = int(line.split()[-2])
             total_size += int(file_size)
-            status_code_count[status_code] += 1
+            if status_code in status_code_count:
+                status_code_count[status_code] += 1
             if (idx + 1) % 10 == 0:
                 print_data()
 
     except KeyboardInterrupt:
         print_data()
+        raise
