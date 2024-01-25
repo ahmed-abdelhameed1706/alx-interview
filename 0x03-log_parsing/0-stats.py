@@ -44,6 +44,5 @@ if __name__ == "__main__":
                 if (idx + 1) % 10 == 0:
                     print_data()
 
-    except KeyboardInterrupt:
+    finally:
         print_data()
-        raise
