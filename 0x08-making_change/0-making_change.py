@@ -15,8 +15,3 @@ def makeChange(coins, total):
             memo[i] = min(memo[i - coin] + 1, memo[i])
 
     return memo[total] if memo[total] != float("inf") else -1
-
-
-print(makeChange([1, 2, 25], 37))
-
-print(makeChange([1256, 54, 48, 16, 102], 1453))
