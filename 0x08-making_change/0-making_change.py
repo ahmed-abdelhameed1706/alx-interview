@@ -4,14 +4,18 @@
 
 def makeChange(coins, total):
     """function to know the lowest number of coins"""
-    if total <= 0:
-        return 0
 
-    memo = [float("inf")] * (total + 1)
-    memo[0] = 0
+    count = 0
+
+    coins.sort(reverse=True)
 
     for coin in coins:
-        for i in range(coin, total + 1):
-            memo[i] = min(memo[i - coin] + 1, memo[i])
+        if total <= 0:
+            break
+        count = count + (total // coin)
+        total = total % coin
 
-    return memo[total] if memo[total] != float("inf") else -1
+    if total == 0:
+        return count
+    else:
+        return -1
