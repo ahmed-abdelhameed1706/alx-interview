@@ -10,9 +10,13 @@ def makeChange(coins, total):
     memo = [float("inf")] * (total + 1)
     memo[0] = 0
 
-    for i in range(1, total + 1):
-        for j in coins:
-            if i - j >= 0:
-                memo[i] = min(memo[i - j] + 1, memo[i])
+    for coin in coins:
+        for i in range(coin, total + 1):
+            memo[i] = min(memo[i - coin] + 1, memo[i])
 
     return memo[total] if memo[total] != float("inf") else -1
+
+
+print(makeChange([1, 2, 25], 37))
+
+print(makeChange([1256, 54, 48, 16, 102], 1453))
